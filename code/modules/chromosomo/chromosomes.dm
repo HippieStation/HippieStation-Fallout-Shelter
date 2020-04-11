@@ -20,4 +20,57 @@
 	query_inc_chromosomes.warn_execute()
 	qdel(query_inc_chromosomes)
 	if(ann)
-		to_chat(src, "<span class='notice'><B>You gain [CHR_count] chromosomes.</B></span>")
+		if(CHR_count >= 0)
+			to_chat(src, "<span class='mind_control'>You gain [CHR_count] chromosomes.</span>")
+		else
+			to_chat(src, "<span class='mind_control'>You lose [CHR_count] chromosomes.</span>")
+
+
+
+/client
+	var/list/chromosome_items = list()
+	var/list/chromosome_items_sorted = list()
+
+/client/proc/update_chromosome_items()
+	chromosome_items = list()
+	chromosome_items_sorted = list()
+
+
+	var/datum/DBQuery/query_get_chromosome_purchases
+	query_get_chromosome_purchases = SSdbcore.NewQuery("SELECT item_id,item_class FROM [format_table_name("chromosome_item_purchases")] WHERE ckey = '[ckey]'")
+
+
+	if(!query_get_chromosome_purchases.warn_execute())
+		return
+
+	while (query_get_beecoin_purchases.NextRow())
+		var/id = query_get_beecoin_purchases.item[1]
+		var/class = query_get_beecoin_purchases.item[2]
+		beecoin_items += id
+		if (class)
+			if (!(class in beecoin_items_sorted))
+				beecoin_items_sorted[class] = list()
+			beecoin_items_sorted[class] += id
+
+	qdel(query_get_beecoin_purchases)
+
+/client/proc/filter_unpurchased_items(list/L, class=null)
+	var/list/purchased
+	if (class)
+		purchased = beecoin_items_sorted[class]
+	else
+		purchased = beecoin_items
+	var/list/filtered = list()
+	for (var/key in L)
+		if (L[key].beecoin_locked && !(key in purchased))
+			continue
+		filtered[key] = L[key]
+	return filtered
+
+/proc/filter_beecoin_sprite_accessories(list/L)
+	var/list/filtered = list()
+	for (var/k in L)
+		if (L[k].beecoin_locked)
+			continue
+		filtered[k] = L[k]
+	return filtered
