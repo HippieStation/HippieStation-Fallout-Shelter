@@ -14,8 +14,8 @@
 
 //BEGIN STUFF THAT MUST COMPILE FIRST
 #include "code\__DEFINES\chromosomes.dm"
-
 //END STUFF THAT MUST COMPILE FIRST
+
 // BEGIN_INCLUDE
 #include "_maps\_basemaphippie.dm"
 #include "code\_compile_options.dm"
@@ -33,6 +33,7 @@
 #include "code\__DEFINES\bsql.dm"
 #include "code\__DEFINES\callbacks.dm"
 #include "code\__DEFINES\cargo.dm"
+#include "code\__DEFINES\chromosomes.dm"
 #include "code\__DEFINES\cinematics.dm"
 #include "code\__DEFINES\cleaning.dm"
 #include "code\__DEFINES\clockcult.dm"
@@ -1612,6 +1613,8 @@
 #include "code\modules\cargo\exports\tools.dm"
 #include "code\modules\cargo\exports\weapons.dm"
 #include "code\modules\chatter\chatter.dm"
+#include "code\modules\chromosomo\chromosome_items.dm"
+#include "code\modules\chromosomo\chromosome_shop.dm"
 #include "code\modules\chromosomo\chromosomes.dm"
 #include "code\modules\client\client_colour.dm"
 #include "code\modules\client\client_defines.dm"

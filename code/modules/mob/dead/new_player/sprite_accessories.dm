@@ -1891,3 +1891,15 @@
 /datum/sprite_accessory/moth_wings/snow
 	name = "Snow"
 	icon_state = "snow"
+
+/datum/sprite_accessory
+	var/chromosome_locked = FALSE // if it needs to be bought with chromosomess to have it
+
+/datum/sprite_accessory/moth_wings/angel
+	name = "Angel"
+	icon_state = "angel"
+	color_src = 0
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	chromosome_locked = TRUE

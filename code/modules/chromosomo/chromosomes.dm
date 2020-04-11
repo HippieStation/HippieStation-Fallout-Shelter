@@ -43,34 +43,34 @@
 	if(!query_get_chromosome_purchases.warn_execute())
 		return
 
-	while (query_get_beecoin_purchases.NextRow())
-		var/id = query_get_beecoin_purchases.item[1]
-		var/class = query_get_beecoin_purchases.item[2]
-		beecoin_items += id
+	while (query_get_chromosome_purchases.NextRow())
+		var/id = query_get_chromosome_purchases.item[1]
+		var/class = query_get_chromosome_purchases.item[2]
+		chromosome_items += id
 		if (class)
-			if (!(class in beecoin_items_sorted))
-				beecoin_items_sorted[class] = list()
-			beecoin_items_sorted[class] += id
+			if (!(class in chromosome_items_sorted))
+				chromosome_items_sorted[class] = list()
+			chromosome_items_sorted[class] += id
 
-	qdel(query_get_beecoin_purchases)
+	qdel(query_get_chromosome_purchases)
 
 /client/proc/filter_unpurchased_items(list/L, class=null)
 	var/list/purchased
 	if (class)
-		purchased = beecoin_items_sorted[class]
+		purchased = chromosome_items_sorted[class]
 	else
-		purchased = beecoin_items
+		purchased = chromosome_items
 	var/list/filtered = list()
 	for (var/key in L)
-		if (L[key].beecoin_locked && !(key in purchased))
+		if (L[key].chromosome_locked && !(key in purchased))
 			continue
 		filtered[key] = L[key]
 	return filtered
 
-/proc/filter_beecoin_sprite_accessories(list/L)
+/proc/filter_chromosome_sprite_accessories(list/L)
 	var/list/filtered = list()
 	for (var/k in L)
-		if (L[k].beecoin_locked)
+		if (L[k].chromosome_locked)
 			continue
 		filtered[k] = L[k]
 	return filtered
