@@ -15,5 +15,5 @@
 	name = "Glock 16"
 	desc = "An artful recreation of a Glock 17. It's a literal piece of garbage."
 	icon_state = "m_glock"
-	fire_delay = 8
-	spread = 8
+	fire_delay = 4
+	spread = 14
