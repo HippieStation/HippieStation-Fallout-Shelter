@@ -319,6 +319,7 @@ CREATE TABLE `SS13_player` (
   `computerid` varchar(32) NOT NULL,
   `lastadminrank` varchar(32) NOT NULL DEFAULT 'Player',
   `accountjoindate` DATE DEFAULT NULL,
+  `chromosomes` int(10) unsigned DEFAULT '0' NOT NULL,
   `flags` smallint(5) unsigned DEFAULT '0' NOT NULL,
   `discord_id` BIGINT(20) NULL DEFAULT NULL,
   PRIMARY KEY (`ckey`),

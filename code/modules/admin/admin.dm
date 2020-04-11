@@ -59,7 +59,8 @@
 		if(M.client.byond_version)
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"
 		body += "<br>\[<b>Byond version:</b> [full_version]\]<br>"
-
+		var/chromosomes = M.client.get_chromosome_count()
+		body += "<br><b>Chromosomes</b>: [chromosomes] "
 
 	body += "<br><br>\[ "
 	body += "<a href='?_src_=vars;[HrefToken()];Vars=[REF(M)]'>VV</a> - "

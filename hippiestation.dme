@@ -12,6 +12,10 @@
 #define DEBUG
 // END_PREFERENCES
 
+//BEGIN STUFF THAT MUST COMPILE FIRST
+#include "code\__DEFINES\chromosomes.dm"
+
+//END STUFF THAT MUST COMPILE FIRST
 // BEGIN_INCLUDE
 #include "_maps\_basemaphippie.dm"
 #include "code\_compile_options.dm"
@@ -1608,6 +1612,7 @@
 #include "code\modules\cargo\exports\tools.dm"
 #include "code\modules\cargo\exports\weapons.dm"
 #include "code\modules\chatter\chatter.dm"
+#include "code\modules\chromosomo\chromosomes.dm"
 #include "code\modules\client\client_colour.dm"
 #include "code\modules\client\client_defines.dm"
 #include "code\modules\client\client_procs.dm"
@@ -1691,6 +1696,14 @@
 #include "code\modules\clothing\under\jobs\Plasmaman\engineering.dm"
 #include "code\modules\clothing\under\jobs\Plasmaman\medsci.dm"
 #include "code\modules\clothing\under\jobs\Plasmaman\security.dm"
+#include "code\modules\crew_objectives\_crew_objectives.dm"
+#include "code\modules\crew_objectives\cargo_objectives.dm"
+#include "code\modules\crew_objectives\civilian_objectives.dm"
+#include "code\modules\crew_objectives\command_objectives.dm"
+#include "code\modules\crew_objectives\engineering_objectives.dm"
+#include "code\modules\crew_objectives\medical_objectives.dm"
+#include "code\modules\crew_objectives\science_objectives.dm"
+#include "code\modules\crew_objectives\security_objectives.dm"
 #include "code\modules\detectivework\detective_work.dm"
 #include "code\modules\detectivework\evidence.dm"
 #include "code\modules\detectivework\footprints_and_rag.dm"

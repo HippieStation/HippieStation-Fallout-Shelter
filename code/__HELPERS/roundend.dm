@@ -106,11 +106,21 @@
 				team_ids[T] = team_gid++
 			antag_info["team"]["id"] = team_ids[T]
 
+		var/greentexted = TRUE
+
 		if(A.objectives.len)
 			for(var/datum/objective/O in A.objectives)
 				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
+				if(result == "FAIL")
+					greentexted = FALSE
 				antag_info["objectives"] += list(list("objective_type"=O.type,"text"=O.explanation_text,"result"=result))
 		SSblackbox.record_feedback("associative", "antagonists", 1, antag_info)
+
+		if(greentexted)
+			if (A.owner && A.owner.key)
+				var/client/C = GLOB.directory[ckey(A.owner.key)]
+				if (C)
+					C.inc_chromosome_count(CHROMOSOME_GREENTEXT_REWARD)
 
 /datum/controller/subsystem/ticker/proc/record_nuke_disk_location()
 	var/obj/item/disk/nuclear/N = locate() in GLOB.poi_list
@@ -261,6 +271,8 @@
 	parts += medal_report()
 	//Station Goals
 	parts += goal_report()
+	//crew objectives
+	parts += crew_objective_report()
 
 	listclearnulls(parts)
 
@@ -340,6 +352,17 @@
 		else
 			parts += "<div class='panel redborder'>"
 			parts += "<span class='redtext'>You did not survive the events on [station_name()]...</span>"
+
+		if(CONFIG_GET(flag/allow_crew_objectives))
+			if(M.mind.current && LAZYLEN(M.mind.crew_objectives))
+				for(var/datum/objective/crew/CO in M.mind.crew_objectives)
+					if(CO.check_completion())
+						parts += "<br><br><B>Your optional objective</B>: [CO.explanation_text] <span class='greentext'><B>Success!</B></span><br>"
+						C.inc_chromosome_count(CHROMOSOME_CO_REWARD)
+					else
+						parts += "<br><br><B>Your optional objective</B>: [CO.explanation_text] <span class='redtext'><B>Failed.</B></span><br>"
+
+
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
@@ -410,6 +433,23 @@
 			parts += com
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
+
+/datum/controller/subsystem/ticker/proc/crew_objective_report()
+	if(!CONFIG_GET(flag/allow_crew_objectives))
+		return
+	var/list/result = list()
+	result += "<div class='panel crewborder'>"
+	result += "<br><b>Crew Objectives:</b>"
+	for(var/mind in SSticker.minds)
+		var/datum/mind/M = mind
+		if(M.current && LAZYLEN(M.crew_objectives))
+			for(var/datum/objective/crew/CO in M.crew_objectives)
+				if(CO.check_completion())
+					result += "<br><B>[key_name(M.current, 0, 1)]</B>: [CO.explanation_text]: <span class='greentext'><B>Success!</B></span><br>"
+				else
+					result += "<br><B>[key_name(M.current, 0, 1)]</B>: [CO.explanation_text]: <span class='redtext'><B>Fail!</B></span><br>"
+	result += "</div>"
+	return result
 
 /datum/controller/subsystem/ticker/proc/antag_report()
 	var/list/result = list()
