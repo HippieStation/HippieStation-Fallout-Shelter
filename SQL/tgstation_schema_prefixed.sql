@@ -329,6 +329,21 @@ CREATE TABLE `SS13_player` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `SS13_chromosome_item_purchases`
+--
+
+DROP TABLE IF EXISTS `SS13_chromosome_item_purchases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SS13_chromosome_item_purchases` (
+  `ckey` varchar(32) NOT NULL,
+  `purchase_date` datetime NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `item_class` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `SS13_poll_option`
 --
 

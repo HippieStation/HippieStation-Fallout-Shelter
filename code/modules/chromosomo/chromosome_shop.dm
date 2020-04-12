@@ -18,7 +18,7 @@
 	for (var/item_type in subtypesof(/datum/chromosome_shop_item))
 		var/datum/chromosome_shop_item/I = new item_type
 		if (I.enabled)
-			body += "<div class='item [(I.id in src.chromosome_items) ? "disabled" : ""]' onclick='window.location=\"?chromosome_buy=[I.id]\"'><div class='icon-wrapper'>[I.get_icon(src)]</div><div style='text-align:center;user-select:none; -ms-user-select:none;'>[I.name]</div><div style='text-align:center;font-weight:bold;font-size:18px;user-select:none; -ms-user-select:none;'>[I.cost]bc</div></div>"
+			body += "<div class='item [(I.id in src.chromosome_items) ? "disabled" : ""]' onclick='window.location=\"?chromosome_buy=[I.id]\"'><div class='icon-wrapper'>[I.get_icon(src)]</div><div style='text-align:center;user-select:none; -ms-user-select:none;'>[I.name]</div><div style='text-align:center;font-weight:bold;font-size:18px;user-select:none; -ms-user-select:none;'>[I.cost]CHR</div></div>"
 	body += "</div>"
 	body += "<br></body>"
 
