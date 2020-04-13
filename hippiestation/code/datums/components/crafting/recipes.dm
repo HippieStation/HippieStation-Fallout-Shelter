@@ -313,6 +313,7 @@
 	time = 40
 	tools = list(TOOL_WELDER, TOOL_WIRECUTTER)
 	category = CAT_FOOD
+	subcategory = CAT_MISCFOOD
 	always_availible = FALSE
 
 /datum/crafting_recipe/c4
