@@ -64,3 +64,14 @@
 	icon = 'icons/mob/wings.dmi'
 	icon_state = "m_wings_angel_FRONT"
 	icon_dir = 1
+
+/datum/chromosome_shop_item/only_one/outfits
+	name = "Outfit"
+	class = "outfit"
+	enabled = FALSE
+
+/datum/chromosome_shop_item/only_one/outfits/pimp_outfit
+	id = "Pimp Outfit"
+	name = "Pimp Outfit"
+	cost = 20
+	enabled = TRUE
