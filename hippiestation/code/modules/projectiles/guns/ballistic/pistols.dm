@@ -16,4 +16,4 @@
 	desc = "An artful recreation of a Glock 17. It's a literal piece of garbage."
 	icon_state = "m_glock"
 	fire_delay = 4
-	spread = 7
+	spread = 14
